@@ -2,6 +2,22 @@
 <html>
   <head>
     <title>Acceleration Example</title>
+    
+    <style>
+            body {
+                margin: 0px;
+            }
+            #footerTable {
+                width: 100%;
+            }
+            footer {
+                position:absolute;
+                bottom:0;
+                width:100%;
+                height:40px;   
+                background:#ccc;
+                }
+    </style>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -23,8 +39,8 @@
     //
     function startWatch() {
 
-        // Update acceleration every 1 seconds
-        var options = { frequency: 1000 };
+        // Update acceleration every 0.1 seconds
+        var options = { frequency: 100 };
 
         watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     }
@@ -46,6 +62,10 @@
                             'Acceleration Y: ' + acceleration.y         + '<br />' +
                             'Acceleration Z: ' + acceleration.z         + '<br />' +
                             'Timestamp: '      + acceleration.timestamp + '<br />';
+                            
+        document.getElementById("xOut").innerHTML = accelacceleration.x;
+        document.getElementById("yOut").innerHTML = accelacceleration.y;
+    	document.getElementById("zOut").innerHTML = accelacceleration.z;
     }
 
     // onError: Failed to get the acceleration
@@ -59,5 +79,16 @@
   <body>
     <div id="accelerometer">Waiting for accelerometer...</div>
     <div><img src="coderdojo_drogheda.jpg"></div>
+
+     <footer>
+            <table id="footerTable">
+                <tr>
+                    <td>X: <span id="xOut">0</span></td>
+                    <td>Y: <span id="yOut">0</span></td>
+                    <td>Z: <span id="zOut">0</span></td>
+                </tr>
+            </table>
+        </footer>
+        
   </body>
 </html>
